@@ -1,0 +1,390 @@
+Julia Shortcuts
+
+Ctrl + L - Clear Screen
+Ctrl + D - Exit 
+Ctrl + C - Terminate a program without exiting Julia
+Workspace - reset the session and gives the new space
+? - Help 
+]? - package help  >> help
+s (2 time tab ) - show all the functions starting with s and goes on 
+
+
+to add a package (case sensitive p should be in caps)
+Julia> using Pkg
+Pkg.add("Pkgname")
+
+Note: use pkg (by pressing ] and type help to see what all functions can be used like pkg.add , pkg.remove etc)
+
+In Jupyter - Create Project then Create a file
+
+write any code like 2+2 , then ctrl + enter to get an output and shift + enter to get output and a new cell
+
+To create an heading click on "Code" dropdown and select heading and write heading. one hash (#) means heading 1 and 2 hash means heading 2 and 
+so on
+
+2+2 --- shift enter   add integer
+
+
+Note : to concatenate strings use (*) 
+
+typeof(variable name) - to know what kind of data type contained by variable
+if the type is integer , result will be int32 or 64 , this is system bit 32 or 64
+if the type is float , result will be float32 or 64 , this is system bit 32 or 64
+
+Note : Julia use / * + - in terms of precedence like first it will divide then multiply then add and then subtract
+
+Note : Use # for commenting in Julia 
+
+
+Arrays :
+
+a1 = [1, 2, 3, 4 , 5]
+output : 5-element Array{Int64,1}:    int 64 - integer data type , 1 is 1 column and 5 are the elements
+ 1
+ 2
+ 3
+ 4
+ 5
+ 
+ a2 = [1, 2.0, 3, 4 , 5] - if there is a float in an array along with int
+ Julia will show output in float only , it is inherited property
+ 
+ a3 = ["I" , "Love", "Julia"]
+ 
+ 
+ 
+ we can add functions in array too like
+ 
+  f1 = [print, println, printstyled]
+ 
+ output -  3-element Array{Function,1}:
+ print
+ println
+ printstyled
+
+ 
+ 
+ Mixed array  a4 = [1 , 2.0, "hi"]  
+ #type will be any
+ output
+ 3-element Array{Any,1}:
+ 1
+ 2.0
+  "hi"
+ 
+ 
+ 
+ #declare array type
+ 
+ type_int = Int64[1,2,3,4,5]   ----> case sensitive no gap after 64 and no gaps in Int64
+ output -
+ 5-element Array{Int64,1}:
+ 1
+ 2
+ 3
+ 4
+ 5
+ 
+ 
+ type_int = Float64[1,2,3,4,5]   ----> case sensitive no gap after 64 and no gaps in Int64
+ output
+ 
+ 5-element Array{Float64,1}:
+ 1.0
+ 2.0
+ 3.0
+ 4.0
+ 5.0
+ 
+ Integer are converted in Float 
+ 
+ 
+ # 2 dimensional array
+ array_2d = [1 2 3 4;5 6 7 8]
+ output 
+ 
+ 2×4 Array{Int64,2}:
+ 1  2  3  4
+ 5  6  7  8
+ 
+ 
+ #vector 
+ vector_1 = [1 2 3 4 5]
+ 
+ output 
+ 1×5 Array{Int64,2}:
+ 1  2  3  4  5
+ 
+ #Random array
+ array_rand = rand(10)
+ # 10 is 10 elements using random functions
+ output -
+ 10-element Array{Float64,1}:
+ 0.14706450843185914
+ 0.7347673289988106
+ 0.5495474419779185
+ 0.13385040933392967
+ 0.8368646879365924
+ 0.3833392018316679
+ 0.5725177685743783
+ 0.6854409424100594
+ 0.5331252646149747
+ 0.26542289582931256
+ 
+ 
+ 
+ # array_rand2 = rand(3,3)
+ 
+ output 
+ 3×3 Array{Float64,2}:
+ 0.192348    0.486688  0.50921
+ 0.928944    0.638416  0.0308334
+ 0.00507218  0.43237   0.406159
+ 
+ 
+ #Ranges
+ 
+ to collect all elements from 1 to 10 in array
+ collect(1:10)
+ 10-element Array{Int64,1}:
+  1
+  2
+  3
+  4
+  5
+  6
+  7
+  8
+  9
+ 10
+ 
+ 
+ #colelct float in array
+ collect(1.5:5.5)
+ 
+ 5-element Array{Float64,1}:
+ 1.5
+ 2.5
+ 3.5
+ 4.5
+ 5.5
+ 
+ 
+ collect(1.5:.5:5.5)
+ 
+ in above the gap between elemets  is 1 if I have to give gap 0.5
+ 
+ output 
+ 9-element Array{Float64,1}:
+ 1.5
+ 2.0
+ 2.5
+ 3.0
+ 3.5
+ 4.0
+ 4.5
+ 5.0
+ 5.5
+ 
+ #Reversing a array  
+ collect(100:-20:10)
+ 
+ output
+ 5-element Array{Int64,1}:
+ 100
+  80
+  60
+  40
+  20
+  
+  
+  
+  saving array 
+  c1 = collect(100:-20:0)
+  output
+  6-element Array{Int64,1}:
+ 100
+  80
+  60
+  40
+  20
+   0
+   
+   c1[3] 
+   60
+   
+   
+   c1[end]
+   0
+   
+   c1[end-2]
+   40 # select 2 element from the end
+   
+   
+   c1[2:5]
+ 
+ 4-element Array{Int64,1}:
+ 80
+ 60
+ 40
+ 20
+ 
+ 
+ to change the value of array
+ c1[1] = 6
+ 
+  6
+ 80
+ 60
+ 40
+ 20
+  0
+ 
+ 
+ 
+ #Tuples
+ 
+ using () instead of []
+ 
+ t1 = (1,2,3,4,5)
+ 
+ (1, 2, 3, 4, 5)
+ 
+ we can't change the value of tuples once initialize
+ 
+ 
+ #2D tuples
+ t2 = ((1,3), (2,5))
+ 
+ output
+ ((1, 3), (2, 5))
+ 
+ 
+ If I have to selct 2 tuple and 1 elements
+ t2[2][1]
+ ouput is 2
+ 
+ #Tuple Strings
+ marks = (Science = (90,100), Maths = (95,100), English = (75,100))
+ 
+ output
+ (Science = (90, 100), Maths = (95, 100), English = (75, 100))
+ 
+ to see only maths marks 
+ 
+ marks.Maths
+ output
+ (95,100)
+ 
+ to merge (marks,marks2)
+ 
+ marks2 = (English = (55,100), Maths = (85,100), Science = (95,100))
+ 
+ merge(marks,marks2)
+ 
+ (Science = (95, 100), Maths = (85, 100), English = (55, 100))
+ 
+ #Dictionary
+ 
+ Cars = Dict("Carl" =>50000, "Car2" =>60000)
+ 
+ output
+ 
+ Dict{String,Int64} with 2 entries:
+  "Carl" => 50000
+  "Car2" => 60000
+  
+  
+  Sets - they don't have a order and no duplicates
+ 
+ sport = (["Nike", "Puma"])
+ 
+ 2-element Array{String,1}:
+ "Nike"
+ "Puma"
+ 
+ in("HRX",sport)
+ false
+ 
+ 
+ 
+ union () with others , intersect(), setdiff(), 
+ 
+ 
+ #Date and time
+ 
+ Dates.time
+ Dates.date
+ Dates.DateTime
+ 
+ now() - Timestamp
+ today() - today's date
+ birthdate = Date(2000,5,1) 1 May 2000 (YYYY,MM,DD)
+ DateTime (2000,5,1,10,15,25) YYYY,MM,DD , H, M, S
+ 
+ now(UTC)
+ 
+ year(birthdate)
+ month(birthdate)3
+ day(birthdate)
+ year(now())
+ hour(now())
+ dayofweek(birthdate)
+ dayname(birthdate)
+ dayofquarter(birthdate)
+ daysinmonth(birthdate) 
+ today() - birthdate
+ today() + Month(5)
+ 
+ date_format = DateFormat("dd-mm-yyyy")
+ Dates.format(birthdate,date_format)
+ 
+ 
+ #Conditional Statements 
+ 
+ 
+ a = 10
+ 
+ a > 10 ? "Yes" : "No"
+ 
+ a < 10 ? "Yes" : "No"
+ 
+ || - or 
+ 
+ a > 10 || b =<20 (OR)
+ 
+ a > 10 && b > 20 (AND)
+ 
+ if a > 10
+ print (" a is gretar than 10")
+ elseif a<10 
+ print("a is less than 10")
+ else
+ print ("a is equal to 10")
+ end
+ 
+ 
+ Loops
+ 
+ for i in ["Adidas", "Nike", "Puma"]
+ println(i, " ")
+ end
+ 
+ Adidas 
+Nike 
+Puma 
+
+
+for i in ["Adidas", "Nike", "Puma"]
+ print(i, " ")
+ end
+ 
+ Adidas Nike Puma 
+ 
+ 
+ 
+ for range in 1:5
+ @show range
+ end
+ 
+ 
